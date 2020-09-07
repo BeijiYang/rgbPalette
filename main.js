@@ -39,9 +39,10 @@ effect(() => {
 
 
 function effect(cb) {
+  // 重置 usedReactivities
   usedReactivities = [];
   cb();
-  console.log(usedReactivities) // [   [po, "a"]   ]
+  // console.log(usedReactivities) // [   [po, "a"]   ]
   for (const reactivity of usedReactivities) {
     // eactivity[0] 即作为 key 的 object
     if (!callbacks.has(reactivity[0])) {
