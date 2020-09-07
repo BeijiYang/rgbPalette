@@ -10,10 +10,29 @@
 </head>
 
 <body>
-  <input type="range" id="r" min=0 max=255>
-  <input type="range" id="g" min=0 max=255>
-  <input type="range" id="b" min=0 max=255>
-  <div id="color" style='width: 200px; height: 200px'></div>
+  <div class="inputs">
+    <div>
+      <span>R</span>
+      <input type="range" id="r" min=0 max=255 style="vertical-align: bottom">
+      <span id='valueR'></span>
+    </div>
+    <div>
+      <span>G</span>
+      <input type="range" id="g" min=0 max=255 style="vertical-align: bottom">
+      <span id="valueG"></span>
+    </div>
+    <div>
+      <span>B</span>
+      <input type="range" id="b" min=0 max=255 style="vertical-align: bottom">
+      <span id="valueB"></span>
+    </div>
+  </div>
+  <div>
+    <div id="color" style='width: 200px; height: 200px'></div>
+    <span>Color: </span>
+    <span id="valueC"></span>
+  </div>
+
 </body>
 <script src="main.js"></script>
 

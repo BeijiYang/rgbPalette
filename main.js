@@ -14,9 +14,18 @@ const object = {
 const po = reactive(object);
 
 // 从数据到 input element 的绑定
-effect(() => document.getElementById('r').value = po.r)
-effect(() => document.getElementById('g').value = po.g)
-effect(() => document.getElementById('b').value = po.b)
+effect(() => {
+  document.getElementById('r').value = po.r;
+  document.getElementById('valueR').innerText = po.r;
+})
+effect(() => {
+  document.getElementById('g').value = po.g;
+  document.getElementById('valueG').innerText = po.g;
+})
+effect(() => {
+  document.getElementById('b').value = po.b;
+  document.getElementById('valueB').innerText = po.b;
+})
 
 // input element => data 的绑定
 document.getElementById('r').addEventListener('input', evt => po.r = evt.target.value);
@@ -25,6 +34,7 @@ document.getElementById('b').addEventListener('input', evt => po.b = evt.target.
 
 effect(() => {
   document.getElementById('color').style.backgroundColor = `rgb(${po.r},${po.g},${po.b})`;
+  document.getElementById('valueC').innerText = `rgb(${po.r},${po.g},${po.b})`;
 })
 
 
