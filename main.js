@@ -6,18 +6,27 @@ const reactives = new Map();
 
 // 不可 observe
 const object = {
-  r: 1,
+  r: 0,
+  g: 0,
+  b: 0,
 };
 // 可以 observe
 const po = reactive(object);
 
-// 监听 po 上的属性，代替事件监听的机制
-effect(() => {
-  // 从数据到 input element 的绑定
-  document.getElementById('r').value = po.r;
-})
+// 从数据到 input element 的绑定
+effect(() => document.getElementById('r').value = po.r)
+effect(() => document.getElementById('g').value = po.g)
+effect(() => document.getElementById('b').value = po.b)
+
 // input element => data 的绑定
 document.getElementById('r').addEventListener('input', evt => po.r = evt.target.value);
+document.getElementById('g').addEventListener('input', evt => po.g = evt.target.value);
+document.getElementById('b').addEventListener('input', evt => po.b = evt.target.value);
+
+effect(() => {
+  document.getElementById('color').style.backgroundColor = `rgb(${po.r},${po.g},${po.b})`;
+})
+
 
 function effect(cb) {
   usedReactivities = [];
@@ -48,7 +57,6 @@ function reactive(object) {
           cb();
         }
       }
-      // console.log(callbacks)
       return obj[prop];
     },
     get(obj, prop) {
